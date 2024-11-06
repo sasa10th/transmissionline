@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reflection Coefficient Feedback Simulation</title>
+    <title>반사계수 피드백 시뮬레이션</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
         body { font-family: Arial, sans-serif; }
@@ -14,11 +14,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Reflection Coefficient Feedback Simulation</h1>
+        <h1>반사계수 피드백 시뮬레이션</h1>
         <div id="inputForm">
-            <label for="Z_L_input">Load Impedance (Z_L):</label>
+            <label for="Z_L_input">로드 임피던스 (Z_L):</label>
             <input type="number" id="Z_L_input" value="100" step="0.1" min="1">
-            <button onclick="simulateFeedback()">Simulate Feedback</button>
+            <button onclick="simulateFeedback()">피드백 시뮬레이션</button>
         </div>
         <div id="3dPlot" style="height: 400px;"></div>
         <div id="convergencePlot" style="height: 300px; margin-top: 20px;"></div>
@@ -67,8 +67,8 @@
             const finalImpedance = Z0 * (1 + finalGamma) / (1 - finalGamma);
 
             document.getElementById("feedbackResult").innerText = 
-                `Optimal Feedback Iterations: ${optimalIterations}, 
-                 Final Impedance after Feedback: ${finalImpedance.toFixed(4)} Ω`;
+                `최적의 피드백 횟수: ${optimalIterations}, 
+                 피드백 후의 최종 임피던스: ${finalImpedance.toFixed(4)} Ω`;
 
             plotConvergence(feedbackValues);
         }
@@ -119,11 +119,11 @@
             };
 
             const layout3d = {
-                title: 'Reflection Coefficient vs. Load Impedance & Feedback Iterations',
+                title: '반사 계수 vs. 로드 임피던스 및 피드백 횟수',
                 scene: {
-                    xaxis: { title: 'Load Impedance (Z_L)' },
-                    yaxis: { title: 'Feedback Iterations' },
-                    zaxis: { title: '|Γ|', range: [0, 1] },
+                    xaxis: { title: '로드 임피던스 (Z_L)' },
+                    yaxis: { title: '피드백 횟수' },
+                    zaxis: { title: '반사계수|Γ|', range: [0, 1] },
                 },
                 margin: { l: 0, r: 0, b: 0, t: 50 },
             };
