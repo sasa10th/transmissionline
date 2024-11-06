@@ -6,22 +6,26 @@
     <title>피드백 회로 시뮬레이션</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .container { width: 80%; margin: 20px auto; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .container { width: 95%; max-width: 600px; margin: 20px auto; padding: 10px; }
         #inputForm { margin-bottom: 20px; }
-        .result { font-weight: bold; margin-top: 10px; }
+        label { display: block; font-size: 1.1em; margin-bottom: 5px; }
+        input[type="number"] { width: 100%; padding: 8px; margin-bottom: 10px; font-size: 1em; }
+        button { width: 100%; padding: 10px; font-size: 1em; cursor: pointer; }
+        .result { font-weight: bold; margin-top: 10px; font-size: 1.1em; text-align: center; }
+        #3dPlot, #convergencePlot { width: 100%; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>피드백 회로 시뮬레이션</h1>
+        <h1 style="text-align: center;">피드백 회로 시뮬레이션</h1>
         <div id="inputForm">
             <label for="Z_L_input">로드 임피던스 (Z_L):</label>
             <input type="number" id="Z_L_input" value="100" step="0.1" min="1">
             <button onclick="simulateFeedback()">피드백 회로 작동</button>
         </div>
-        <div id="3dPlot" style="height: 400px;"></div>
-        <div id="convergencePlot" style="height: 300px; margin-top: 20px;"></div>
+        <div id="3dPlot" style="height: 300px;"></div>
+        <div id="convergencePlot" style="height: 250px; margin-top: 20px;"></div>
         <div id="feedbackResult" class="result"></div>
     </div>
 
@@ -67,8 +71,7 @@
             const finalImpedance = Z0 * (1 + finalGamma) / (1 - finalGamma);
 
             document.getElementById("feedbackResult").innerText = 
-                `최적의 피드백 횟수: ${optimalIterations}, 
-                 피드백 후의 최종 임피던스: ${finalImpedance.toFixed(4)} Ω`;
+                `최적의 피드백 횟수: ${optimalIterations}, 최종 임피던스: ${finalImpedance.toFixed(4)} Ω`;
 
             plotConvergence(feedbackValues);
         }
